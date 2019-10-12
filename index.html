@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    
+    <div id="div2" class="father" style='transform: translate(0,600px);'>
+        <div id='div1' class='base'>
+ 
+        </div>
+        <div class="children1">
+            children1
+        </div>
+        <div class="children2">
+            children2
+        </div>
+        <div class="children3">
+            children3
+        </div>
+    </div>
+</body>
+</html>
+<script>
+        var height = window.innerHeight;
+        var timer = null ;
+        var index = 1;
+        var indexten = index*height;
+        var scrollFunc = function (e) {
+           if(!timer){
+               if (e.wheelDelta){
+                   var father = document.getElementById('div2');
+                       if (e.wheelDelta > 0 && index<1) {
+                           index=index+1;
+                           indexten = index*height;
+                           console.log(indexten)
+                            father.style.transform = `translate(0px, ${indexten}px)`; 
+                       }
+                       if (e.wheelDelta < 0) {
+                           index=index-1;
+                           indexten = index*height;
+                           console.log(indexten)
+                           father.style.transform = `translate(0px, ${indexten}px)`; 
+                          
+                       }
+                   }  
+              timer = setTimeout( () => { 
+                   timer = null;
+              }, 1500)
+           }
+        }
+        window.onload = function () {
+           
+            var body = document.getElementsByTagName(body);
+            document.addEventListener('DOMMouseScroll', scrollFunc, false);
+        }
+       window.onmousewheel = document.onmousewheel = scrollFunc;
+   </script>
